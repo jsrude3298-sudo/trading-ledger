@@ -253,7 +253,7 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
       <h1>자동매매 대시보드</h1>
       <button class="theme-btn" onclick="toggleTheme()" aria-label="라이트/다크 전환">🌓</button>
     </div>
-    <p class="sub">2026-08-09 시작 · <strong>적립식 투자</strong>와 <strong>개별주 봇</strong>의 모든 성과·검증·결정이 여기 쌓입니다 · 갱신 2026-08-09</p>
+    <p class="sub">2026-08-09 시작 · <strong>적립식 투자</strong>와 <strong>개별주 봇</strong>의 모든 성과·검증·결정이 여기 쌓입니다 · 갱신 2026-08-10</p>
   </header>
 
   <nav class="tabs">
@@ -264,8 +264,9 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
   </nav>
 
   <section id="sheet-main" class="sheet active">
+  <div class="panel"><h2>🛡️ 센티넬 현재 신호 <span class="mini">(시세 기준일 2026-08-07 · 빌드 시점 재계산)</span></h2><p><strong>목표: 삼성전기 · SK하이닉스 · 삼성전자</strong> — 이번 달 리밸런싱 대기 · 편출 면제 보유: KT</p><div class="scroll"><table><thead><tr><th>순위</th><th>종목</th><th>12개월 수익률</th><th>200일선</th><th>판정</th></tr></thead><tbody><tr class="hl"><td class="num">1</td><td><strong>삼성전기</strong></td><td class="num pos">+854.6%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr class="hl"><td class="num">2</td><td><strong>SK하이닉스</strong></td><td class="num pos">+429.8%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr class="hl"><td class="num">3</td><td><strong>삼성전자</strong></td><td class="num pos">+254.4%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr><td class="num">4</td><td><strong>LG전자</strong></td><td class="num pos">+140.9%</td><td>위 ✓</td><td>—</td></tr><tr><td class="num">5</td><td><strong>S-Oil</strong></td><td class="num pos">+123.3%</td><td>위 ✓</td><td>—</td></tr><tr><td class="num">6</td><td><strong>현대차</strong></td><td class="num pos">+87.2%</td><td>아래 ✗</td><td>—</td></tr></tbody></table></div></div>
   <div class="kpi-row">
-    <div class="kpi"><span class="label">올해 모의 합계</span>
+    <div class="kpi"><span class="label">올해 모의 합계 <span class="mini">(은퇴한 구 로직 리플레이)</span></span>
       <span class="value good">+1,577,864원</span>
       <span class="hint">2026-01-02 ~ 2026-08-08 · 개별주 봇 + 적립식</span></div>
     <div class="kpi"><span class="label">🤖 개별주 봇 (구 로직 모의)</span>
@@ -275,8 +276,8 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
       <span class="value good">+2.33%</span>
       <span class="hint"><strong>4,070,684원</strong> 투입 → <strong>4,165,585원</strong> · 월 500,000원</span></div>
     <div class="kpi"><span class="label">현재 상태</span>
-      <span class="value" style="font-size:17px">센티넬 실전 대기</span>
-      <span class="hint">8/10(월) 첫 리밸런싱</span></div>
+      <span class="value" style="font-size:17px">센티넬 실전 가동</span>
+      <span class="hint">실주문 대기 (자동 기록)</span></div>
   </div>
 
   <div class="panel">
@@ -332,17 +333,20 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
 
   <div class="panel scroll"><h2>🛡️ 센티넬 실전 기록 (최근 200)</h2><table><thead><tr><th>시각</th><th>종목</th><th>구분</th><th>수량</th><th>가격</th><th>상태</th><th>사유</th></tr></thead><tbody></tbody></table></div>
 
-  <div class="panel"><h2>구 로직 모의 리플레이 (2026-01-02 ~ 2026-08-08, 참고용)</h2>
-  <p>8/9 센티넬 교체 전 로직(레짐 전환 + 조건부 손절 -5% / 하드 -10%, 비중 상한 20%), 가상자본 1,000만원.
-  수익 <strong class="pos">+1,482,963원 (+14.83%)</strong> · MDD -14.21% · 거래 133건.
-  아래 보유 종목·달력·거래 내역은 모두 이 구 로직 모의 기록입니다.</p></div>
-
-  <div class="panel scroll"><h2>🔒 아직 보유 중인 종목 (3개)</h2>
-  <table><thead><tr><th>종목</th><th>수량</th><th>내 평균 매수가</th><th>현재가 <span class="mini">(마지막 거래일 종가)</span></th><th>수익률</th></tr></thead>
-  <tbody><tr><td>엔비디아<span class="ticker">NVDA</span></td><td class="num">1주</td><td class="num">219.44</td><td class="num">223.96</td><td class="num pos">+2.06%</td></tr><tr><td>메타<span class="ticker">META</span></td><td class="num">2주</td><td class="num">557.27</td><td class="num">592.10</td><td class="num pos">+6.25%</td></tr><tr><td>테슬라<span class="ticker">TSLA</span></td><td class="num">4주</td><td class="num">313.34</td><td class="num">328.58</td><td class="num pos">+4.86%</td></tr></tbody></table></div>
+  <details class="fold">
+    <summary>📦 구 로직 모의 리플레이 (2026-01-02 ~ 2026-08-08, 참고용) — 펼쳐 보기</summary>
+    <div class="fold-body">
+    <p>8/9 센티넬 교체 전 로직(레짐 전환 + 조건부 손절 -5% / 하드 -10%, 비중 상한 20%), 가상자본 1,000만원.
+    수익 <strong class="pos">+1,482,963원 (+14.83%)</strong> · MDD -14.21% · 거래 133건.
+    아래 보유 종목·달력·거래 내역은 모두 이 구 로직 모의 기록입니다.</p>
+    <div class="scroll"><h3>🔒 모의 보유 종목 (3개)</h3>
+    <table><thead><tr><th>종목</th><th>수량</th><th>내 평균 매수가</th><th>현재가 <span class="mini">(마지막 거래일 종가)</span></th><th>수익률</th></tr></thead>
+    <tbody><tr><td>엔비디아<span class="ticker">NVDA</span></td><td class="num">1주</td><td class="num">219.44</td><td class="num">223.96</td><td class="num pos">+2.06%</td></tr><tr><td>메타<span class="ticker">META</span></td><td class="num">2주</td><td class="num">557.27</td><td class="num">592.10</td><td class="num pos">+6.25%</td></tr><tr><td>테슬라<span class="ticker">TSLA</span></td><td class="num">4주</td><td class="num">313.34</td><td class="num">328.58</td><td class="num pos">+4.86%</td></tr></tbody></table></div>
+    </div>
+  </details>
 
   <details class="fold">
-    <summary>📅 월별 손익 달력 — 펼쳐 보기</summary>
+    <summary>📅 월별 손익 달력 (구 로직 모의) — 펼쳐 보기</summary>
     <div class="fold-body">
     <div class="cal-nav">
       <button type="button" onclick="calStep(-1)" aria-label="이전 달">←</button>
