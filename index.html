@@ -265,11 +265,11 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
   </nav>
 
   <section id="sheet-main" class="sheet active">
-  <div class="panel"><h2>🛡️ 센티넬 현재 신호 <span class="mini">(시세 기준일 2026-08-07 · 빌드 시점 재계산)</span></h2><p><strong>목표: 삼성전기 · SK하이닉스 · 삼성전자</strong> — 이번 달 리밸런싱 대기 · 편출 면제 보유: KT</p><div class="scroll"><table><thead><tr><th>순위</th><th>종목</th><th>12개월 수익률</th><th>200일선</th><th>판정</th></tr></thead><tbody><tr class="hl"><td class="num">1</td><td><strong>삼성전기</strong></td><td class="num pos">+854.6%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr class="hl"><td class="num">2</td><td><strong>SK하이닉스</strong></td><td class="num pos">+429.8%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr class="hl"><td class="num">3</td><td><strong>삼성전자</strong></td><td class="num pos">+254.4%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr><td class="num">4</td><td><strong>LG전자</strong></td><td class="num pos">+140.9%</td><td>위 ✓</td><td>—</td></tr><tr><td class="num">5</td><td><strong>S-Oil</strong></td><td class="num pos">+123.3%</td><td>위 ✓</td><td>—</td></tr><tr><td class="num">6</td><td><strong>현대차</strong></td><td class="num pos">+87.2%</td><td>아래 ✗</td><td>—</td></tr></tbody></table></div></div>
+  <div class="panel"><h2>🛡️ 센티넬 현재 신호 <span class="mini">(시세 기준일 2026-08-07 · 빌드 시점 재계산)</span></h2><p><strong>목표: 삼성전기 · SK하이닉스 · 삼성전자</strong> — 이번 달 리밸런싱 대기 · 편출 면제 보유: KT</p><p class="mini" style="margin-top:6px">이 순위는 대시보드 빌드 시점 시세 기준입니다 — 실제 리밸런싱 체결 때는 러너가 장중 KIS 현재가를 추가로 반영해 신호를 다시 계산하므로 이 패널과 미세하게 다를 수 있습니다.</p><div class="scroll"><table><thead><tr><th>순위</th><th>종목</th><th>12개월 수익률</th><th>200일선</th><th>판정</th></tr></thead><tbody><tr class="hl"><td class="num">1</td><td><strong>삼성전기</strong></td><td class="num pos">+854.6%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr class="hl"><td class="num">2</td><td><strong>SK하이닉스</strong></td><td class="num pos">+429.8%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr class="hl"><td class="num">3</td><td><strong>삼성전자</strong></td><td class="num pos">+254.4%</td><td>위 ✓</td><td>⚔️ 편입</td></tr><tr><td class="num">4</td><td><strong>LG전자</strong></td><td class="num pos">+140.9%</td><td>위 ✓</td><td>—</td></tr><tr><td class="num">5</td><td><strong>S-Oil</strong></td><td class="num pos">+123.3%</td><td>위 ✓</td><td>—</td></tr><tr><td class="num">6</td><td><strong>현대차</strong></td><td class="num pos">+87.2%</td><td>아래 ✗</td><td>—</td></tr></tbody></table></div></div>
   <div class="kpi-row">
     <div class="kpi"><span class="label">🛡️ 센티넬 봇 실주문</span>
-      <span class="value">0건</span>
-      <span class="hint">8/10 첫 리밸런싱부터 기록</span></div>
+      <span class="value">1건</span>
+      <span class="hint">주문시점 추정 순매수액 53,200원 (체결가 아님)</span></div>
     <div class="kpi"><span class="label">🏦 적립식 실매수</span>
       <span class="value">0건</span>
       <span class="hint">아직 기록 없음 (ISA 수동 매수)</span></div>
@@ -291,7 +291,7 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
   실증(백테스트): 미국 40년 연 <strong>+13.2%</strong> · 한국 26년 <strong>+19.2%</strong> · 최근 20년 <strong>+22.7%</strong>
   <span class="mini">(상세는 📎 참고 탭)</span></p></div>
 
-  <div class="panel muted-panel"><h2>🛡️ 센티넬 실전 기록</h2><p>아직 실전 거래가 없습니다 — 리밸런싱·파수꾼 매매가 발생하면 여기 자동으로 쌓입니다.</p></div>
+  <div class="panel scroll"><h2>🛡️ 센티넬 실전 기록 (최근 200)</h2><table><thead><tr><th>시각</th><th>종목</th><th>구분</th><th>수량</th><th>가격</th><th>상태</th><th>사유</th></tr></thead><tbody><tr><td>2026-08-10 09:00</td><td>030200</td><td><span class="side buy">매수</span></td><td class="num">1</td><td class="num">53,200</td><td>실주문</td><td class="reason">라이브 연결 테스트 매수(1주)</td></tr></tbody></table></div>
 </section>
   <section id="sheet-core" class="sheet"><div class="panel"><h2>🏦 적립식 투자 — 매월 적립 + 급락 시 증액</h2><p>ISA 계좌에서 매월 <strong>수동</strong> 매수(자동매매 아님, 디스코드로 매월 1일 알림). 미국S&P500 40% · 나스닥100 25% · 미국배당다우존스 20% · 금현물 15%. 고점 대비 <strong>-10%</strong> 이상이면 1.5배, <strong>-20%</strong> 이상이면 2배 증액. 매수만 하고 팔지 않습니다.</p></div><div class="panel muted-panel"><p>아직 실제 매수 기록이 없습니다 — 월 알림 후 실제로 매수하면 여기 쌓입니다.</p></div></section>
   <section id="sheet-reference" class="sheet">
