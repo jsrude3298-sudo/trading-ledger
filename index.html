@@ -150,12 +150,16 @@ td.r { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
 
 @media (max-width: 1000px) {
   .sheet { padding: 0 22px 32px; margin: 0; border: none; }
+  .masthead { flex-wrap: wrap; gap: 10px; }
+  .stamp { text-align: left; }
   .perf, .duo { grid-template-columns: 1fr; gap: 24px; }
   .figures { grid-template-columns: repeat(2, 1fr); row-gap: 18px; }
   .statusline { grid-template-columns: 1fr; gap: 16px; }
   .headline .value { font-size: 40px; }
   .tabs { gap: 16px; overflow-x: auto; }
   .note-row { grid-template-columns: 64px 70px 1fr; gap: 8px; }
+  table { display: block; overflow-x: auto; }
+  td, th { white-space: nowrap; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -207,7 +211,7 @@ td.r { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
       </div>
       <div>
         <div class="sec-label"><em>04</em>VS MARKET — 8/10 이후 같은 기간</div>
-        <div class="vsrow"><div class="vswho"><span style="font-weight:700">내 개별주 투자</span><b class="loss">-1.91%</b></div><div class="track"><span class="axis0" style="left:74.5%"></span><i class="loss-bg" style="left:0.00%;width:74.50%"></i></div></div><div class="vsrow"><div class="vswho"><span>KOSPI</span><b class="gain">+0.65%</b></div><div class="track"><span class="axis0" style="left:74.5%"></span><i class="gain-bg" style="left:74.50%;width:25.50%;opacity:.55"></i></div></div><div class="vsrow"><div class="vswho"><span>S&P500 (달러)</span><b class="loss">-0.22%</b></div><div class="track"><span class="axis0" style="left:74.5%"></span><i class="loss-bg" style="left:65.94%;width:8.55%;opacity:.55"></i></div></div>
+        <div class="vsrow"><div class="vswho"><span style="font-weight:700">내 개별주 투자</span><b class="loss">-1.91%</b></div><div class="track"><span class="axis0" style="left:74.5%"></span><i class="loss-bg" style="left:0.00%;width:74.50%"></i></div></div><div class="vsrow"><div class="vswho"><span>KOSPI</span><b class="gain">+0.65%</b></div><div class="track"><span class="axis0" style="left:74.5%"></span><i class="gain-bg" style="left:74.50%;width:25.50%;opacity:.55"></i></div></div><div class="vsrow"><div class="vswho"><span>S&P500 (달러)</span><b class="loss">-0.23%</b></div><div class="track"><span class="axis0" style="left:74.5%"></span><i class="loss-bg" style="left:65.60%;width:8.90%;opacity:.55"></i></div></div>
         <div class="sec-label" style="margin-top:26px"><em>05</em>DAILY LEDGER</div>
         <table class="mini-t"><thead><tr><th>일자</th><th class="r">당일</th><th class="r">누적</th></tr></thead><tbody><tr><td>26.08.10<span class="lnote">4건 매매</span></td><td class="r loss">-75,800원</td><td class="r loss" style="font-weight:700">-75,800원</td></tr></tbody></table>
       </div>
