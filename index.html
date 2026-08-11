@@ -65,7 +65,7 @@ body { margin: 0; background: var(--page-bg); color: var(--text-primary);
   font-size: 14.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: var(--link); text-underline-offset: 3px; }
 main { max-width: 1500px; margin: 0 auto; padding: 36px 28px 88px; display: flex; flex-direction: column; gap: 20px; }
-.grid-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, 560px); gap: 20px; align-items: start; }
+.grid-main { display: grid; grid-template-columns: minmax(0, 1fr) clamp(380px, 34%, 560px); gap: 20px; align-items: start; }
 .grid-side { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 @media (max-width: 1100px) { .grid-main { grid-template-columns: 1fr; } }
 
@@ -217,7 +217,7 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
 
 
 /* hero summary */
-.grid-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, 560px); gap: 20px; align-items: stretch; }
+.grid-hero { display: grid; grid-template-columns: minmax(0, 1fr) clamp(380px, 34%, 560px); gap: 20px; align-items: stretch; }
 @media (max-width: 1100px) { .grid-hero { grid-template-columns: 1fr; } }
 .hero-top { display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
 .hero-big { font-family: var(--font-num); font-size: clamp(30px, 3.4vw, 46px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
@@ -312,7 +312,7 @@ th { white-space: nowrap; }
 </div></div>
     <div class="grid-side">
       <div class="panel scroll holdings"><h2>🔒 보유 종목 <span class="mini">(시세 기준일 2026-08-10)</span></h2><table><thead><tr><th>종목</th><th class="num">수량</th><th class="num">평단</th><th class="num">현재가</th><th class="num">평가손익 (수익률)</th></tr></thead><tbody><tr><td><strong>SK하이닉스</strong></td><td class="num">1주</td><td class="num">1,446,000</td><td class="num">1,420,000</td><td class="num"><strong class="neg">-26,000원</strong> <span class="neg">(-1.80%)</span></td></tr><tr><td><strong>삼성전기</strong></td><td class="num">1주</td><td class="num">1,303,000</td><td class="num">1,274,000</td><td class="num"><strong class="neg">-29,000원</strong> <span class="neg">(-2.23%)</span></td></tr><tr><td><strong>삼성전자</strong></td><td class="num">5주</td><td class="num">234,000</td><td class="num">230,000</td><td class="num"><strong class="neg">-20,000원</strong> <span class="neg">(-1.71%)</span></td></tr><tr><td><strong>KT</strong></td><td class="num">1주</td><td class="num">53,200</td><td class="num">52,400</td><td class="num"><strong class="neg">-800원</strong> <span class="neg">(-1.50%)</span></td></tr><tr class="total-row"><td><strong>합계</strong></td><td></td><td class="num">3,972,200원</td><td class="num">3,896,400원</td><td class="num"><strong class="neg">-75,800원</strong> <span class="neg">(-1.91%)</span></td></tr></tbody></table><p class="mini" style="margin-top:6px;white-space:nowrap">평단 = KIS 실계좌 실제 체결가 · 합계 행 = 투입액/평가액</p></div>
-      <div class="panel"><h2>📊 시장과 비교 <span class="mini">(2026-08-10 실전 시작 ~ 현재)</span></h2><div class="bench-list"><div class="bench-item"><span>내 개별주 투자</span><b class="neg">-1.91%</b></div><div class="bench-item"><span>S&P500 (달러)</span><b class="neg">-0.11%</b></div></div><p class="mini" style="margin-top:8px">지수 = 같은 기간 아무 매매 없이 보유했을 때의 등락률.</p></div>
+      <div class="panel"><h2>📊 시장과 비교 <span class="mini">(2026-08-10 실전 시작 ~ 현재)</span></h2><div class="bench-list"><div class="bench-item"><span>내 개별주 투자</span><b class="neg">-1.91%</b></div><div class="bench-item"><span>S&P500 (달러)</span><b class="neg">-0.13%</b></div></div><p class="mini" style="margin-top:8px">지수 = 같은 기간 아무 매매 없이 보유했을 때의 등락률.</p></div>
     </div>
   </div>
 </section>
