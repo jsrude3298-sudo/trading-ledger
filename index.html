@@ -65,7 +65,7 @@ body { margin: 0; background: var(--page-bg); color: var(--text-primary);
   font-size: 14.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: var(--link); text-underline-offset: 3px; }
 main { max-width: 1500px; margin: 0 auto; padding: 36px 28px 88px; display: flex; flex-direction: column; gap: 20px; }
-.grid-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 460px); gap: 20px; align-items: start; }
+.grid-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 470px); gap: 20px; align-items: start; }
 .grid-side { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 @media (max-width: 1100px) { .grid-main { grid-template-columns: 1fr; } }
 
@@ -216,7 +216,7 @@ td.reason { color: var(--text-secondary); font-size: 12px; }
 
 
 /* hero summary */
-.grid-hero { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); gap: 20px; align-items: stretch; }
+.grid-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 470px); gap: 20px; align-items: stretch; }
 @media (max-width: 1100px) { .grid-hero { grid-template-columns: 1fr; } }
 .hero-top { display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
 .hero-big { font-family: var(--font-num); font-size: clamp(30px, 3.4vw, 46px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
@@ -240,6 +240,18 @@ th.num { text-align: right; }
 .gbar { position: relative; height: 5px; border-radius: 3px; background: var(--neutral-border); margin-top: 6px; overflow: hidden; }
 .gbar span { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--good-text); }
 .gbar span.warn { background: var(--bad-text); }
+
+
+th { white-space: nowrap; }
+.holdings table { font-size: 14px; }
+.holdings th, .holdings td { padding: 10px 10px; }
+.holdings td.num { font-size: 13.5px; }
+.bench-item { display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 2px; border-bottom: 1px solid var(--gridline); font-size: 13.5px; }
+.bench-item:last-child { border-bottom: none; }
+.bench-item b { font-family: var(--font-num); font-size: 17px; font-weight: 700; }
+.spark text { font-family: var(--font-num); font-size: 10.5px; fill: var(--text-muted); }
+.spark .spark-end { font-size: 12.5px; font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
@@ -268,7 +280,7 @@ th.num { text-align: right; }
   <h2>🛡️ 개별주 투자 <span class="mini">(2026-08-10 실전 시작~)</span></h2>
   <div class="hero-top">
     <div><div><span class="hero-big neg">-75,800원</span><span class="hero-pct neg">-1.91%</span></div><p class="hero-sub">평가 3,896,400원 · 투입 3,972,200원 · 시세 기준일 2026-08-10</p></div>
-    <div class="spark"><svg viewBox="0 0 440 120" role="img" aria-label="누적 손익 추이"><line x1="10" y1="10.0" x2="430" y2="10.0" class="spark-zero"/><polygon points="10.0,10.0 10.0,10.0 430.0,110.0 430.0,10.0" fill="var(--bad-text)" class="spark-area"/><polyline points="10.0,10.0 430.0,110.0" stroke="var(--bad-text)" class="spark-line"/><circle cx="430.0" cy="110.0" r="4" fill="var(--bad-text)"/></svg><p class="mini" style="text-align:right;margin:2px 0 0">누적 손익 추이</p></div>
+    <div class="spark"><svg viewBox="0 0 460 150" role="img" aria-label="누적 손익 추이"><line x1="10" y1="18.0" x2="450" y2="18.0" class="spark-zero"/><text x="10" y="13.0">0원 = 원금</text><polygon points="10.0,18.0 10.0,18.0 450.0,124.0 450.0,18.0" fill="var(--bad-text)" class="spark-area"/><polyline points="10.0,18.0 450.0,124.0" stroke="var(--bad-text)" class="spark-line"/><circle cx="450.0" cy="124.0" r="4" fill="var(--bad-text)"/><text x="450.0" y="115.0" text-anchor="end" class="spark-end" fill="var(--bad-text)">-75,800원</text><text x="10" y="144">26.08.10 시작</text><text x="450" y="144" text-anchor="end">26.08.10</text></svg><p class="mini" style="text-align:right;margin:2px 0 0">하루 단위 누적 손익 추이 (선이 0원 위면 이득)</p></div>
   </div>
   <div><div class="alloc-bar"><div class="alloc-seg" style="width:36.44%;background:#3B82F6" title="SK하이닉스 36.4%"></div><div class="alloc-seg" style="width:32.70%;background:#8B5CF6" title="삼성전기 32.7%"></div><div class="alloc-seg" style="width:29.51%;background:#14B8A6" title="삼성전자 29.5%"></div><div class="alloc-seg" style="width:1.34%;background:#F59E0B" title="KT 1.3%"></div></div><div class="alloc-legend"><span><i style="background:#3B82F6"></i>SK하이닉스 <b>36.4%</b></span><span><i style="background:#8B5CF6"></i>삼성전기 <b>32.7%</b></span><span><i style="background:#14B8A6"></i>삼성전자 <b>29.5%</b></span><span><i style="background:#F59E0B"></i>KT <b>1.3%</b></span></div></div>
 </div>
@@ -298,9 +310,8 @@ th.num { text-align: right; }
   <div id="cal-core" style="display:none"><p class="mini" style="padding:12px 0">아직 적립식 실매수 기록이 없습니다 — ISA에서 매수 후 기록되면 여기 쌓입니다.</p></div>
 </div></div>
     <div class="grid-side">
-      <div class="panel scroll"><h2>🔒 보유 종목 <span class="mini">(시세 기준일 2026-08-10)</span></h2><table><thead><tr><th>종목</th><th class="num">수량</th><th class="num">매수가(평단)</th><th class="num">현재가</th><th class="num">평가손익</th><th class="num">수익률</th></tr></thead><tbody><tr><td><strong>SK하이닉스</strong><span class="ticker">000660</span></td><td class="num">1주</td><td class="num">1,446,000</td><td class="num">1,420,000</td><td class="num"><strong class="neg">-26,000원</strong></td><td class="num"><span class="neg">-1.80%</span></td></tr><tr><td><strong>삼성전기</strong><span class="ticker">009150</span></td><td class="num">1주</td><td class="num">1,303,000</td><td class="num">1,274,000</td><td class="num"><strong class="neg">-29,000원</strong></td><td class="num"><span class="neg">-2.23%</span></td></tr><tr><td><strong>삼성전자</strong><span class="ticker">005930</span></td><td class="num">5주</td><td class="num">234,000</td><td class="num">230,000</td><td class="num"><strong class="neg">-20,000원</strong></td><td class="num"><span class="neg">-1.71%</span></td></tr><tr><td><strong>KT</strong><span class="ticker">030200</span></td><td class="num">1주</td><td class="num">53,200</td><td class="num">52,400</td><td class="num"><strong class="neg">-800원</strong></td><td class="num"><span class="neg">-1.50%</span></td></tr><tr class="total-row"><td><strong>합계</strong></td><td></td><td class="num">3,972,200원</td><td class="num">3,896,400원</td><td class="num"><strong class="neg">-75,800원</strong></td><td class="num"><strong class="neg">-1.91%</strong></td></tr></tbody></table><p class="mini" style="margin-top:6px">매수가는 KIS 실계좌 잔고의 실제 체결 평단. 합계의 매수가·현재가 열은 투입액·평가액.</p></div>
-      <div class="panel"><h2>최근 실전 기록</h2><div class="timeline"><div class="event"><div class="rail"><span class="dot t-change"></span></div><div class="card t-change"><div class="event-head"><span class="tag t-change">로직 변경</span><span class="event-date">26.08.11</span></div><h3>대시보드 개편 — 참고 탭 제거 + 실전 성과 중심 재구성 + 자동 갱신</h3><p>사용자 요청 반영: ① 구 로직 백테스트 참고 탭 전체 삭제(혼란 방지, 과거 기록은 개발노트에 유지) ② 한눈 요약을 '수익률·보유 종목·최근 기록' 3요소로 압축 — 센티넬 수익률(투입→평가)을 첫 KPI로 강조, 보유 종목 표(평단·현재가·수익률) 신설 ③ 신호 순위표는 센티넬 탭으로 이동, 거래 기록에 종목명 표기 ④ run-bot.ps1에 대시보드 빌드 연결 — 평일 매 사이클(30분)마다 자동 재빌드+Pages push (그동안 수동 빌드라 갱신 안 되던 문제 해결).</p><div class="chips"><span class="chip"><span class="chip-k">탭</span> 5→4개</span><span class="chip"><span class="chip-k">자동갱신</span> 평일 09:35~ 30분마다</span></div></div></div><div class="event"><div class="rail"><span class="dot t-decision"></span></div><div class="card t-decision"><div class="event-head"><span class="tag t-decision">결정</span><span class="event-date">26.08.10</span></div><h3>오늘 한정 — 매도는 승인제 유지 (SENTINEL_LIVE 전환 보류)</h3><p>오늘 오후 파수꾼 사이클이 dry-run이라 자동 손절이 안 나가는 걸 발견해 SENTINEL_LIVE=true 즉시 전환을 제안했으나, 사용자가 거부 — 매도는 오늘 한정으로 dry(감시만)로 두고, 손절/서킷브레이커 조건이 뜨면 디스코드 dry-run 알림으로 먼저 확인 후 사용자 승인 받아 오케스트레이터가 수동 매도 집행하는 방식 채택. 내일(8/11) SENTINEL_LIVE_FROM 도달 시 계획대로 완전 자동 전환.</p><div class="chips"><span class="chip"><span class="chip-k">오늘 매도</span> 승인제(dry+수동승인)</span><span class="chip"><span class="chip-k">내일부터</span> 완전 자동</span></div></div></div><div class="event"><div class="rail"><span class="dot t-live"></span></div><div class="card t-live"><div class="event-head"><span class="tag t-live">라이브</span><span class="event-date">26.08.10</span></div><h3>첫 실전 리밸런싱 체결 — 삼성전기·SK하이닉스·삼성전자 편입</h3><p>사용자 승인(--approve-once)으로 8월 리밸런싱 실주문 체결. 삼성전기 1주·SK하이닉스 1주 정상 체결, 삼성전자는 6주 시도 시 주문가능금액 초과로 실패 후 잔여현금으로 5주 재시도 성공 (사용자 지시). KT는 편출 면제(keep)로 관찰 유지. 별개로 print() 콘솔 인코딩 오류가 매매 후 디스코드 알림을 막던 버그 발견·수정(3곳) — 실주문 자체엔 영향 없었음.</p><div class="chips"><span class="chip"><span class="chip-k">체결</span> 삼성전기1·SK하이닉스1·삼성전자5·KT1(유지)</span><span class="chip"><span class="chip-k">실패후재시도</span> 삼성전자 6주→5주</span><span class="chip"><span class="chip-k">버그수정</span> 알림 인코딩 3곳</span></div></div></div></div>
-      <p style="margin-top:8px"><a href="#" onclick="show('chronicle');return false">전체 개발노트 보기 →</a></p></div>
+      <div class="panel scroll holdings"><h2>🔒 보유 종목 <span class="mini">(시세 기준일 2026-08-10)</span></h2><table><thead><tr><th>종목</th><th class="num">수량</th><th class="num">평단</th><th class="num">현재가</th><th class="num">평가손익 (수익률)</th></tr></thead><tbody><tr><td><strong>SK하이닉스</strong></td><td class="num">1주</td><td class="num">1,446,000</td><td class="num">1,420,000</td><td class="num"><strong class="neg">-26,000원</strong> <span class="neg">(-1.80%)</span></td></tr><tr><td><strong>삼성전기</strong></td><td class="num">1주</td><td class="num">1,303,000</td><td class="num">1,274,000</td><td class="num"><strong class="neg">-29,000원</strong> <span class="neg">(-2.23%)</span></td></tr><tr><td><strong>삼성전자</strong></td><td class="num">5주</td><td class="num">234,000</td><td class="num">230,000</td><td class="num"><strong class="neg">-20,000원</strong> <span class="neg">(-1.71%)</span></td></tr><tr><td><strong>KT</strong></td><td class="num">1주</td><td class="num">53,200</td><td class="num">52,400</td><td class="num"><strong class="neg">-800원</strong> <span class="neg">(-1.50%)</span></td></tr><tr class="total-row"><td><strong>합계</strong></td><td></td><td class="num">3,972,200원</td><td class="num">3,896,400원</td><td class="num"><strong class="neg">-75,800원</strong> <span class="neg">(-1.91%)</span></td></tr></tbody></table><p class="mini" style="margin-top:6px;white-space:nowrap">평단 = KIS 실계좌 실제 체결가 · 합계 행 = 투입액/평가액</p></div>
+      <div class="panel"><h2>📊 시장과 비교 <span class="mini">(2026-08-10 실전 시작 ~ 현재)</span></h2><div class="bench-list"><div class="bench-item"><span>내 개별주 투자</span><b class="neg">-1.91%</b></div><div class="bench-item"><span>S&P500 (달러)</span><b class="neg">-0.12%</b></div></div><p class="mini" style="margin-top:8px">지수 = 같은 기간 아무 매매 없이 보유했을 때의 등락률.</p></div>
     </div>
   </div>
 </section>
