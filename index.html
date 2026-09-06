@@ -223,26 +223,306 @@ td.r { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
   font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 5px;
   pointer-events: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ── 자산 현황 · 실행 계획 (2026-09-06) ── */
+.h2 { font-size: 15px; font-weight: 700; margin: 30px 0 12px; display: flex; align-items: baseline; gap: 10px; }
+.h2 .quiet { font-weight: 400; }
+.hero-a { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: start; padding-top: 28px; }
+.hero-k { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
+.hero-v { font-size: 52px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin: 6px 0 8px; }
+.hero-v small { font-size: 20px; font-weight: 500; margin-left: 4px; color: var(--ink-2); }
+.hero-s { font-size: 14px; color: var(--ink-2); } .hero-s b { font-weight: 700; }
+.hero-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.hero-side { display: grid; gap: 16px; padding-top: 6px; }
+.gauge-k { font-size: 12px; color: var(--muted); }
+.gauge-v { font-size: 22px; font-weight: 700; margin: 2px 0 6px; } .gauge-v span { font-size: 13px; font-weight: 500; color: var(--muted); }
+.gauge-b { position: relative; height: 10px; background: var(--track); border-radius: 5px; overflow: visible; }
+.gauge-b i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--loss); border-radius: 5px; }
+.gauge-b i.ok { background: var(--gain); }
+.gauge-b em { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); transform: translateX(-1px); }
+.acards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.acard { border: 1px solid var(--hairline); border-radius: 10px; padding: 16px 18px; background: var(--bg); }
+.acard-h { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.acard-h .num { color: var(--muted); font-weight: 600; }
+.acard-v { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin: 8px 0 4px; }
+.acard-v small { font-size: 13px; font-weight: 500; margin-left: 3px; color: var(--ink-2); }
+.acard-s { font-size: 12.5px; color: var(--ink-2); } .acard-n { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+.cmps { display: grid; gap: 10px; }
+.cmp { display: grid; grid-template-columns: 90px minmax(0, 1fr) 150px; gap: 14px; align-items: center; }
+.cmp-l { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.cmp-b { position: relative; height: 14px; background: var(--track); border-radius: 4px; }
+.cmp-now { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 4px; opacity: .85; }
+.cmp-tgt { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); transform: translateX(-1px); }
+.cmp-r { font-size: 13px; text-align: right; } .cmp-r span { color: var(--muted); } .cmp-r em { font-style: normal; margin-left: 6px; font-weight: 700; }
+.fold { border-top: 1px solid var(--hairline); }
+.fold summary { display: grid; grid-template-columns: 1fr auto auto; gap: 18px; padding: 14px 0; cursor: pointer; font-size: 14px; font-weight: 700; list-style: none; }
+.fold summary::-webkit-details-marker { display: none; }
+.fold summary > span:first-child::before { content: "▸  "; color: var(--muted); } .fold[open] summary > span:first-child::before { content: "▾  "; }
+.tscroll { overflow-x: auto; }
+.rules { padding-left: 22px; font-size: 14px; color: var(--ink-2); display: grid; gap: 8px; }
+.rules b { color: var(--ink); } .rules.dont { list-style: "✕  "; }
+.prog { display: grid; gap: 12px; }
+.prog-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) 220px; gap: 14px; align-items: center; }
+.prog-k { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.prog-b { height: 12px; background: var(--track); border-radius: 6px; overflow: hidden; }
+.prog-b i { display: block; height: 100%; background: var(--gain); }
+.prog-v { font-size: 13px; text-align: right; }
+.badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.04em; }
+.badge.todo { background: #FCE8D8; color: #A54B12; } .badge.ok { background: #DDF1E5; color: #1E7A4F; }
+:root[data-theme="dark"] .badge.todo { background: #3A2716; color: #F0A56A; }
+:root[data-theme="dark"] .badge.ok { background: #16311F; color: #6BCB8F; }
+tr.sum td { font-weight: 700; border-top: 1.5px solid var(--hairline-2); }
+/* 금액 가리기 */
+body.masked .money, body.masked .num.money { filter: blur(7px); user-select: none; }
+.mask-btn { border: 1px solid var(--hairline-2); background: var(--surface); border-radius: 5px; font-size: 12px; padding: 3px 9px; cursor: pointer; color: var(--ink); font-family: inherit; }
+/* 모바일 */
+@media (max-width: 720px) {
+  .sheet { margin: 0; border: 0; padding: 0 16px 28px; }
+  .masthead { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .stamp { text-align: left; }
+  .tabs { gap: 14px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+  .hero-a, .perf, .duo, .acards { grid-template-columns: 1fr; gap: 18px; }
+  .figures { grid-template-columns: 1fr 1fr; row-gap: 14px; }
+  .hero-v { font-size: 40px; } .headline .value { font-size: 36px; }
+  .mast-r { flex-wrap: wrap; gap: 8px 12px; } .stamp { flex: 1 1 100%; }
+  .cmp { grid-template-columns: 1fr auto; grid-template-areas: "l r" "b b"; gap: 4px 10px; }
+  .cmp-l { grid-area: l; } .cmp-b { grid-area: b; } .cmp-r { grid-area: r; font-size: 12.5px; }
+  .prog-row { grid-template-columns: 1fr auto; grid-template-areas: "l r" "b b"; gap: 4px 10px; }
+  .prog-k { grid-area: l; } .prog-b { grid-area: b; } .prog-v { grid-area: r; }
+  td { padding: 8px 6px; font-size: 13px; } td.r { font-size: 12.5px; }
+  /* 폰에서는 종목·현재가치·손익·수익률만 — 수량·원금·비중은 숨긴다 */
+  .fold th:nth-child(2), .fold td:nth-child(2), .fold th:nth-child(3), .fold td:nth-child(3),
+  .fold th:nth-child(7), .fold td:nth-child(7) { display: none; }
+}
 </style>
 </head>
 <body>
 <div class="sheet">
   <header class="masthead">
-    <h1><small>JS CAPITAL · PRIVATE LEDGER</small>투자 운용 현황</h1>
+    <h1><small>JS CAPITAL · PRIVATE LEDGER</small>내 투자 현황</h1>
     <div class="mast-r">
-      <div class="stamp">기준 <b>KIS · 26.09.04 종가</b> · 갱신 <b>2026-09-06</b><br>실전 개시 2026-08-10 · 운용 28일차</div>
+      <div class="stamp">봇 시세 <b>KIS · 26.09.04 종가</b> · 갱신 <b>2026-09-06</b><br>봇 실전 개시 2026-08-10 · 28일차 · <b>정지 중</b></div>
+      <button class="mask-btn" onclick="toggleMask()" id="maskBtn" aria-label="금액 가리기">금액 가리기</button>
       <button class="theme-btn" onclick="toggleTheme()" aria-label="라이트/다크 전환">◐</button>
     </div>
   </header>
 
   <nav class="tabs">
-    <button class="tab active" data-pane="main" onclick="show('main')">한눈 요약</button>
-    <button class="tab" data-pane="satellite" onclick="show('satellite')">개별주 투자</button>
-    <button class="tab" data-pane="core" onclick="show('core')">적립식 투자</button>
+    <button class="tab active" data-pane="assets" onclick="show('assets')">자산 현황</button>
+    <button class="tab" data-pane="plan" onclick="show('plan')">실행 계획</button>
+    <button class="tab" data-pane="main" onclick="show('main')">봇 요약</button>
+    <button class="tab" data-pane="satellite" onclick="show('satellite')">봇 상세</button>
+    <button class="tab" data-pane="core" onclick="show('core')">적립식</button>
     <button class="tab" data-pane="chronicle" onclick="show('chronicle')">개발노트</button>
   </nav>
 
-  <div id="pane-main" class="pane active">
+  <div id="pane-assets" class="pane active">
+  <section class="hero-a">
+    <div class="hero-main">
+      <div class="hero-k">내 전체 주식 · 5개 계좌</div>
+      <div class="hero-v num money">9,143만<small>원</small></div>
+      <div class="hero-s">원금 <b class="num money">9,532만</b> ·
+        손익 <b class="num money loss">−3,882,871</b>
+        <b class="num loss">(-4.1%)</b></div>
+      <div class="hero-note">2026-09-06 기준 · 최근 종가 · 1,351원/$ · 아내 보유는 별도</div>
+    </div>
+    <div class="hero-side">
+      <div class="gauge">
+        <div class="gauge-k">개별주 비중</div>
+        <div class="gauge-v num"><b class="loss">49%</b><span> → 목표 25%</span></div>
+        <div class="gauge-b"><i style="width:49.0%"></i><em style="left:25%"></em></div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-k">방어자산 (채권·금·현금)</div>
+        <div class="gauge-v num"><b class="loss">0%</b><span> → 목표 28%</span></div>
+        <div class="gauge-b"><i class="ok" style="width:0.0%"></i><em style="left:28%"></em></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="h2">계좌 성격별</div>
+    <div class="acards">
+      <div class="acard">
+        <div class="acard-h">국내 (직접)<span class="num">65.9%</span></div>
+        <div class="acard-v num money">6,027만<small>원</small></div>
+        <div class="acard-s">원금 <span class="num money">6,456만</span> ·
+          <span class="num money loss">−4,297,011</span>
+          <span class="num loss">(-6.7%)</span></div>
+        <div class="acard-n">14종목</div>
+      </div>
+      <div class="acard">
+        <div class="acard-h">해외 (직접)<span class="num">5.1%</span></div>
+        <div class="acard-v num money">470만<small>원</small></div>
+        <div class="acard-s">원금 <span class="num money">492만</span> ·
+          <span class="num money loss">−225,512</span>
+          <span class="num loss">(-4.6%)</span></div>
+        <div class="acard-n">12종목</div>
+      </div>
+      <div class="acard">
+        <div class="acard-h">연금 (손 못 댐)<span class="num">29.0%</span></div>
+        <div class="acard-v num money">2,647만<small>원</small></div>
+        <div class="acard-s">원금 <span class="num money">2,583만</span> ·
+          <span class="num money gain">+639,652</span>
+          <span class="num gain">(+2.5%)</span></div>
+        <div class="acard-n">6종목</div>
+      </div></div>
+  </section>
+
+  <section>
+    <div class="h2">자산군 — 지금 → 목표 <span class="quiet">막대가 지금, 세로선이 목표</span></div>
+    <div class="cmps">
+      <div class="cmp">
+        <div class="cmp-l">주식US</div>
+        <div class="cmp-b">
+          <div class="cmp-now" style="width:27.8%"></div>
+          <div class="cmp-tgt" style="left:35%"></div>
+        </div>
+        <div class="cmp-r num"><b>27.8%</b><span> → 35%</span>
+          <em class="gain">+7p</em></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-l">주식KR</div>
+        <div class="cmp-b">
+          <div class="cmp-now" style="width:58.5%"></div>
+          <div class="cmp-tgt" style="left:25%"></div>
+        </div>
+        <div class="cmp-r num"><b>58.5%</b><span> → 25%</span>
+          <em class="loss">-34p</em></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-l">해외분산</div>
+        <div class="cmp-b">
+          <div class="cmp-now" style="width:13.8%"></div>
+          <div class="cmp-tgt" style="left:12%"></div>
+        </div>
+        <div class="cmp-r num"><b>13.8%</b><span> → 12%</span>
+          <em class="loss">-2p</em></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-l">채권</div>
+        <div class="cmp-b">
+          <div class="cmp-now" style="width:0.0%"></div>
+          <div class="cmp-tgt" style="left:8%"></div>
+        </div>
+        <div class="cmp-r num"><b>0.0%</b><span> → 8%</span>
+          <em class="gain">+8p</em></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-l">금</div>
+        <div class="cmp-b">
+          <div class="cmp-now" style="width:0.0%"></div>
+          <div class="cmp-tgt" style="left:7%"></div>
+        </div>
+        <div class="cmp-r num"><b>0.0%</b><span> → 7%</span>
+          <em class="gain">+7p</em></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-l">원화현금</div>
+        <div class="cmp-b">
+          <div class="cmp-now" style="width:0.0%"></div>
+          <div class="cmp-tgt" style="left:13%"></div>
+        </div>
+        <div class="cmp-r num"><b>0.0%</b><span> → 13%</span>
+          <em class="gain">+13p</em></div>
+      </div></div>
+  </section>
+
+  <section>
+    <div class="h2">종목별 <span class="quiet">카테고리를 눌러 펼친다 · ≈ 표시는 앱 스냅샷 평가</span></div>
+    
+      <details class="fold" open>
+        <summary><span>국내 (직접)</span><span class="num money">6,027만원</span><span class="num quiet">65.9%</span></summary>
+        <div class="tscroll"><table>
+          <thead><tr><th>종목</th><th class="r">수량</th><th class="r">매입원가</th><th class="r">현재가치</th>
+          <th class="r">손익</th><th class="r">수익률</th><th class="r">비중</th></tr></thead>
+          <tbody><tr><td class="name">KODEX 200타겟위클리커버드콜<small>국내위탁</small></td><td class="r">455</td><td class="r money">12,810,735</td><td class="r money"><b>9,134,125</b></td><td class="r money loss">−3,676,610</td><td class="r loss">-28.7%</td><td class="r quiet">10.0%</td></tr><tr><td class="name">NAVER<small>국내위탁</small></td><td class="r">42</td><td class="r money">9,837,000</td><td class="r money"><b>8,967,000</b></td><td class="r money loss">−870,000</td><td class="r loss">-8.8%</td><td class="r quiet">9.8%</td></tr><tr><td class="name">KODEX 미국S&P500<small>국내위탁</small></td><td class="r">360</td><td class="r money">9,310,200</td><td class="r money"><b>8,503,200</b></td><td class="r money loss">−807,000</td><td class="r loss">-8.7%</td><td class="r quiet">9.3%</td></tr><tr><td class="name">삼성SDI<small>국내위탁</small></td><td class="r">15</td><td class="r money">3,174,501</td><td class="r money"><b>8,220,000</b></td><td class="r money gain">+5,045,499</td><td class="r gain">+158.9%</td><td class="r quiet">9.0%</td></tr><tr><td class="name">POSCO홀딩스<small>국내위탁</small></td><td class="r">19</td><td class="r money">4,968,500</td><td class="r money"><b>6,403,000</b></td><td class="r money gain">+1,434,500</td><td class="r gain">+28.9%</td><td class="r quiet">7.0%</td></tr><tr><td class="name">삼성전자<small>국내위탁</small></td><td class="r">18</td><td class="r money">5,771,000</td><td class="r money"><b>4,599,000</b></td><td class="r money loss">−1,172,000</td><td class="r loss">-20.3%</td><td class="r quiet">5.0%</td></tr><tr><td class="name">SK하이닉스<small>국내위탁</small></td><td class="r">2</td><td class="r money">3,412,000</td><td class="r money"><b>3,294,000</b></td><td class="r money loss">−118,000</td><td class="r loss">-3.5%</td><td class="r quiet">3.6%</td></tr><tr><td class="name">삼성전기<small>국내위탁</small></td><td class="r">2</td><td class="r money">3,162,000</td><td class="r money"><b>2,802,000</b></td><td class="r money loss">−360,000</td><td class="r loss">-11.4%</td><td class="r quiet">3.1%</td></tr><tr><td class="name">코스모신소재<small>국내위탁</small></td><td class="r">68</td><td class="r money">4,270,400</td><td class="r money"><b>2,652,000</b></td><td class="r money loss">−1,618,400</td><td class="r loss">-37.9%</td><td class="r quiet">2.9%</td></tr><tr><td class="name">SK하이닉스<small>한투위탁</small></td><td class="r">1</td><td class="r money">1,446,000</td><td class="r money"><b>1,647,000</b></td><td class="r money gain">+201,000</td><td class="r gain">+13.9%</td><td class="r quiet">1.8%</td></tr><tr><td class="name">롯데에너지머티리얼즈<small>국내위탁</small></td><td class="r">39</td><td class="r money">2,991,300</td><td class="r money"><b>1,437,150</b></td><td class="r money loss">−1,554,150</td><td class="r loss">-52.0%</td><td class="r quiet">1.6%</td></tr><tr><td class="name">삼성전자<small>한투위탁</small></td><td class="r">5</td><td class="r money">1,170,000</td><td class="r money"><b>1,277,500</b></td><td class="r money gain">+107,500</td><td class="r gain">+9.2%</td><td class="r quiet">1.4%</td></tr><tr><td class="name">쇼박스<small>국내위탁</small></td><td class="r">655</td><td class="r money">2,187,700</td><td class="r money"><b>1,277,250</b></td><td class="r money loss">−910,450</td><td class="r loss">-41.6%</td><td class="r quiet">1.4%</td></tr><tr><td class="name">KT<small>한투위탁</small></td><td class="r">1</td><td class="r money">53,200</td><td class="r money"><b>54,300</b></td><td class="r money gain">+1,100</td><td class="r gain">+2.1%</td><td class="r quiet">0.1%</td></tr></tbody></table></div>
+      </details>
+      <details class="fold" >
+        <summary><span>해외 (직접)</span><span class="num money">470만원</span><span class="num quiet">5.1%</span></summary>
+        <div class="tscroll"><table>
+          <thead><tr><th>종목</th><th class="r">수량</th><th class="r">매입원가</th><th class="r">현재가치</th>
+          <th class="r">손익</th><th class="r">수익률</th><th class="r">비중</th></tr></thead>
+          <tbody><tr><td class="name">테슬라<small>토스</small></td><td class="r">2.51091</td><td class="r money">1,485,167</td><td class="r money"><b>1,201,215</b></td><td class="r money loss">−283,952</td><td class="r loss">-19.1%</td><td class="r quiet">1.3%</td></tr><tr><td class="name">SCHD<small>토스</small></td><td class="r">20.482</td><td class="r money">956,037</td><td class="r money"><b>963,030</b></td><td class="r money gain">+6,993</td><td class="r gain">+0.7%</td><td class="r quiet">1.1%</td></tr><tr><td class="name">SPY<small>토스</small></td><td class="r">—</td><td class="r money">863,345</td><td class="r money"><b>870,252</b> <small title="앱 스냅샷 평가">≈</small></td><td class="r money gain">+6,907</td><td class="r gain">+0.8%</td><td class="r quiet">1.0%</td></tr><tr><td class="name">QQQ<small>토스</small></td><td class="r">0.748687</td><td class="r money">711,247</td><td class="r money"><b>727,265</b></td><td class="r money gain">+16,018</td><td class="r gain">+2.3%</td><td class="r quiet">0.8%</td></tr><tr><td class="name">뱅크오브아메리카<small>토스</small></td><td class="r">1.87993</td><td class="r money">143,729</td><td class="r money"><b>159,206</b></td><td class="r money gain">+15,477</td><td class="r gain">+10.8%</td><td class="r quiet">0.2%</td></tr><tr><td class="name">마이크로소프트<small>토스</small></td><td class="r">0.223044</td><td class="r money">133,116</td><td class="r money"><b>150,587</b></td><td class="r money gain">+17,471</td><td class="r gain">+13.1%</td><td class="r quiet">0.2%</td></tr><tr><td class="name">코카콜라<small>토스</small></td><td class="r">1.24117</td><td class="r money">143,726</td><td class="r money"><b>147,688</b></td><td class="r money gain">+3,962</td><td class="r gain">+2.8%</td><td class="r quiet">0.2%</td></tr><tr><td class="name">엔비디아<small>토스</small></td><td class="r">0.464035</td><td class="r money">133,123</td><td class="r money"><b>144,426</b></td><td class="r money gain">+11,303</td><td class="r gain">+8.5%</td><td class="r quiet">0.2%</td></tr><tr><td class="name">아메리칸익스프레스<small>토스</small></td><td class="r">0.304028</td><td class="r money">143,714</td><td class="r money"><b>133,977</b></td><td class="r money loss">−9,737</td><td class="r loss">-6.8%</td><td class="r quiet">0.1%</td></tr><tr><td class="name">메타<small>토스</small></td><td class="r">0.15479</td><td class="r money">143,689</td><td class="r money"><b>128,989</b></td><td class="r money loss">−14,700</td><td class="r loss">-10.2%</td><td class="r quiet">0.1%</td></tr><tr><td class="name">팔란티어<small>토스</small></td><td class="r">0.230415</td><td class="r money">47,874</td><td class="r money"><b>54,271</b></td><td class="r money gain">+6,397</td><td class="r gain">+13.4%</td><td class="r quiet">0.1%</td></tr><tr><td class="name">아이온큐<small>토스</small></td><td class="r">0.292066</td><td class="r money">17,246</td><td class="r money"><b>15,595</b></td><td class="r money loss">−1,651</td><td class="r loss">-9.6%</td><td class="r quiet">0.0%</td></tr></tbody></table></div>
+      </details>
+      <details class="fold" >
+        <summary><span>연금 (손 못 댐)</span><span class="num money">2,647만원</span><span class="num quiet">29.0%</span></summary>
+        <div class="tscroll"><table>
+          <thead><tr><th>종목</th><th class="r">수량</th><th class="r">매입원가</th><th class="r">현재가치</th>
+          <th class="r">손익</th><th class="r">수익률</th><th class="r">비중</th></tr></thead>
+          <tbody><tr><td class="name">미래에셋미국인덱스EMP<small>연금저축</small></td><td class="r">—</td><td class="r money">5,753,920</td><td class="r money"><b>6,136,626</b> <small title="앱 스냅샷 평가">≈</small></td><td class="r money gain">+382,706</td><td class="r gain">+6.7%</td><td class="r quiet">6.7%</td></tr><tr><td class="name">KODEX 미국S&P500<small>IRP</small></td><td class="r">257</td><td class="r money">6,343,025</td><td class="r money"><b>6,070,340</b></td><td class="r money loss">−272,685</td><td class="r loss">-4.3%</td><td class="r quiet">6.6%</td></tr><tr><td class="name">미래에셋연금글로벌배당커버드콜액티브<small>연금저축</small></td><td class="r">—</td><td class="r money">5,609,263</td><td class="r money"><b>5,465,050</b> <small title="앱 스냅샷 평가">≈</small></td><td class="r money loss">−144,213</td><td class="r loss">-2.6%</td><td class="r quiet">6.0%</td></tr><tr><td class="name">미래에셋유럽블루칩인덱스<small>연금저축</small></td><td class="r">—</td><td class="r money">3,271,275</td><td class="r money"><b>3,567,721</b> <small title="앱 스냅샷 평가">≈</small></td><td class="r money gain">+296,446</td><td class="r gain">+9.1%</td><td class="r quiet">3.9%</td></tr><tr><td class="name">에셋플러스 슈퍼아시아 리치투게더<small>연금저축</small></td><td class="r">—</td><td class="r money">3,621,787</td><td class="r money"><b>3,527,816</b> <small title="앱 스냅샷 평가">≈</small></td><td class="r money loss">−93,971</td><td class="r loss">-2.6%</td><td class="r quiet">3.9%</td></tr><tr><td class="name">교보악사파워인덱스<small>연금저축</small></td><td class="r">—</td><td class="r money">1,231,891</td><td class="r money"><b>1,703,260</b> <small title="앱 스냅샷 평가">≈</small></td><td class="r money gain">+471,369</td><td class="r gain">+38.3%</td><td class="r quiet">1.9%</td></tr></tbody></table></div>
+      </details>
+  </section>
+</div>
+  <div id="pane-plan" class="pane">
+  <section>
+    <div class="h2">원칙 세 줄 <span class="quiet">2026-09-06 확정</span></div>
+    <ol class="rules">
+      <li><b>손실 난 종목은 팔지 않는다.</b> 대신 물타기도 하지 않는다 — 나갈 수 없는 방에 짐을 더 들이지 않는다.</li>
+      <li><b>새로 넣는 돈은 방어자산부터.</b> 매달 150만원을 현금 70만 · 채권 40만 · 금 40만으로. 방어자산 28%가 되면 그다음부터 전액 미국 지수.</li>
+      <li><b>이익 실현은 손절이 아니다.</b> 이익 종목은 <b>처음 넣은 돈만큼만</b> 팔고, 남는 주식은 원금 0인 '공짜 주식'으로 끝까지 든다.</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="h2">진행률</div>
+    <div class="prog">
+      <div class="prog-row">
+        <div class="prog-k">방어자산</div>
+        <div class="prog-b"><i style="width:0.0%"></i></div>
+        <div class="prog-v num"><b>0.0%</b> / 28%</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-k">납입</div>
+        <div class="prog-b"><i style="width:0.0%"></i></div>
+        <div class="prog-v num"><b>0</b>개월 · 누적 <span class="money">0만원</span></div>
+      </div>
+    </div>
+    <p class="prose" style="margin-top:12px">지금 속도(월 150만)면 목표까지 <b>약 24개월</b>.
+      원금 회수 주문을 실행하면 <b>약 13개월</b>.</p>
+  </section>
+
+  <section>
+    <div class="h2">1단계 · 원금 회수 주문 <span class="badge todo">실행 전</span></div>
+    <div class="tscroll"><table>
+      <thead><tr><th>종목</th><th class="r">보유</th><th class="r">매도</th><th class="r">회수액</th><th class="r">남김</th><th class="r">남는 가치</th></tr></thead>
+      <tbody><tr><td class="name">삼성SDI<small>+159%</small></td><td class="r">15주</td><td class="r"><b>6주</b></td><td class="r money">3,288,000</td><td class="r">9주</td><td class="r money">4,932,000</td></tr><tr><td class="name">POSCO홀딩스<small>+29%</small></td><td class="r">19주</td><td class="r"><b>15주</b></td><td class="r money">5,055,000</td><td class="r">4주</td><td class="r money">1,348,000</td></tr>
+      <tr><td class="name">나머지 이익 8종<small>이익이 작아 남길 게 없다</small></td><td class="r">—</td><td class="r"><b>전량</b></td>
+        <td class="r money">3,634,978</td><td class="r">—</td><td class="r">—</td></tr>
+      <tr class="sum"><td>합계</td><td></td><td></td><td class="r money"><b>11,977,978</b></td><td colspan="2" class="quiet">→ 현금 559만 · 채권 319만 · 금 319만</td></tr>
+      </tbody></table></div>
+    <p class="prose">남는 삼성SDI 9주·POSCO 4주는 원금이 0이다 — 아무리 떨어져도 손실이 아니니 손절 고민 없이 든다. "더 큰 수익"은 이 주식들의 몫.</p>
+  </section>
+
+  <section>
+    <div class="h2">2단계 · 매달 150만원</div>
+    <div class="tscroll"><table>
+      <thead><tr><th>갈래</th><th class="r">금액</th><th>뭘 사나</th></tr></thead>
+      <tbody>
+        <tr><td class="name">원화현금</td><td class="r money">700,000</td><td>CMA · KODEX CD금리액티브(459580)</td></tr>
+        <tr><td class="name">채권</td><td class="r money">400,000</td><td>KOSEF 국고채10년(148070) 20만 + TIGER 미국채10년선물(305080) 20만</td></tr>
+        <tr><td class="name">금</td><td class="r money">400,000</td><td>ACE KRX금현물(411060)</td></tr>
+        <tr><td class="name">이후</td><td class="r">전액</td><td>방어자산 28% 도달 후 → KODEX 미국S&P500(379800)</td></tr>
+      </tbody></table></div>
+    <p class="prose"><b>급락 규칙</b> — 미국 S&P500이 고점 대비 −10%면 그 달 지수 매수 1.5배(현금에서 75만 추가), −20%면 2배(150만 추가). 손절 못 하는 사람이 급락장에서 할 수 있는 유일한 행동이고, 그 돈은 현금 갈래에서 나온다.</p>
+  </section>
+
+  <section>
+    <div class="h2">납입 기록 <span class="quiet">assistant/contributions.jsonl</span></div>
+    <p class="prose quiet">아직 시작 전. 첫 납입을 하면 여기 쌓인다.</p>
+  </section>
+
+  <section class="last">
+    <div class="h2">하지 말 것</div>
+    <ul class="rules dont">
+      <li>손실 종목 물타기</li>
+      <li>무효화 조건 없는 개별주 신규 매수</li>
+      <li>커버드콜 추가 — 오를 때 상승분을 팔아 분배금을 만드는 구조라 20년 복리와 부딪힌다</li>
+      <li>연금저축·IRP에서 현금 만들기 — 55세까지 못 뺀다</li>
+    </ul>
+  </section>
+</div>
+  <div id="pane-main" class="pane">
   <section>
     <div class="sec-label"><em>01</em>PERFORMANCE — 개별주 운용</div>
     <div class="perf">
@@ -284,7 +564,7 @@ td.r { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
   <section class="last">
     <div class="statusline">
       <div><span class="k">STRATEGY</span><b>모멘텀 센티넬</b> — 12개월 수익률 상위 3종목 · 200일선 위 · ⅓씩.
-        8월 리밸런싱 <b>완료</b> (삼성전기 · SK하이닉스 · 삼성전자)</div>
+        <b>정지 중</b> — 2026-09-01 사용자 지시로 9월 리밸런싱 스킵 (전략 검증 중) — 파수꾼은 계속. 파수꾼(손절·서킷)은 계속</div>
       <div><span class="k">RISK</span>하드 손절 <b>평단 -10%</b> · 급락 서킷브레이커 <b>고점 -15% 2일 연속 종가 확인</b> — 조건 도달 시 전량 자동 매도</div>
       <div><span class="k">ISA 적립식</span>매월 1일 수동 매수 알림 · <b>이번 달 대기</b> — 실매수 기록 시 자동 합류</div>
     </div>
@@ -375,11 +655,22 @@ td.r { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
     <p class="quiet">아직 실제 매수 기록이 없습니다 — 매월 1일 알림 후 매수하면 여기 쌓입니다.</p>
   </section>
 </div>
-  <div id="pane-chronicle" class="pane"><section class="last"><div class="sec-label"><em>01</em>DEV NOTES — 결정과 변경의 기록 (한 줄 요약)</div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-change">로직 변경</span><span class="ntitle">유니버스 1차 갱신 — 2006년대 대형주 명단 → 시총 상위 18종 (유지 6 · 신규 12)</span></div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">전종목 시점별 유니버스 재검증 — ⑤위험조정모멘텀 방향은 16/16 셀 우위, 크기는 불안정 → 채택 불가</span></div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-change">로직 변경</span><span class="ntitle">실거래 안전 패치 — 정지 플래그·잔고조회 실패 가시화·상태파일 fail-closed·KIS 백오프</span></div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">신규 로직 6종 시점별 검증 — ⑤위험조정모멘텀·②잔차모멘텀이 현행 신호 상회, 채택 보류(critic 조건부)</span></div><div class="note-row"><span class="nd num">26.09.01</span><span class="ntag t-change">로직 변경</span><span class="ntitle">서킷브레이커 판정 규칙 변경 — 장중가 1회 → 완결 종가 2거래일 연속 (ALT-B)</span></div><div class="note-row"><span class="nd num">26.08.12</span><span class="ntag t-change">로직 변경</span><span class="ntitle">국내주식 시세 소스 Yahoo → KIS Open API 전환</span></div><div class="note-row"><span class="nd num">26.08.12</span><span class="ntag t-change">로직 변경</span><span class="ntitle">탭별 상세 재구성 — 개별주 풀 상세·적립식 틀·장중 3시간 곡선·VS 라인차트 부활</span></div><div class="note-row"><span class="nd num">26.08.12</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 전면 리디자인 (A institutional + C 시장비교 바) + 1장 운용 보고서 신설</span></div><div class="note-row"><span class="nd num">26.08.11</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 개편 — 참고 탭 제거 + 실전 성과 중심 재구성 + 자동 갱신</span></div><div class="note-row"><span class="nd num">26.08.10</span><span class="ntag t-decision">결정</span><span class="ntitle">오늘 한정 — 매도는 승인제 유지 (SENTINEL_LIVE 전환 보류)</span></div><div class="note-row"><span class="nd num">26.08.10</span><span class="ntag t-live">라이브</span><span class="ntitle">첫 실전 리밸런싱 체결 — 삼성전기·SK하이닉스·삼성전자 편입</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">센티넬 전환 완료 — 구 봇 러너 교체·대시보드 연동</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">실주문 최종 승인 — 자본 상한 실잔고 전액(2,259,226원)으로 상향</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">무인 운영 확정 — 디스코드 알림 강화</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">실주문 전환(사용자) + 실행 주기 30분으로 상향</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">실전 모드 지원 + 러너·스케줄러 — dry-run 가동 시작</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">봇 자본 상한(BOT_CAPITAL) 추가 — 실전 준비</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 가독성 3차 개선</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 가독성 2차 개선</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">적립식은 ISA 계좌 수동 매수로 전환 (세금 A안)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle"><a href="https://jsrude3298-sudo.github.io/trading-ledger/">영구 공개 대시보드 개설 (GitHub Pages)</a></span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 개선 — 명칭·다크모드 토글·가독성</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">적립식 포트폴리오 확대 + 증액 기준 심화 (사용자 지적 반영)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 시트 구조 개편</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">올해 전체(1/2~8/8) 코어+새틀라이트 통합 모의</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">비중 상한 20% 확정 + 코어 DCA 월 50만원 활성화</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">코어 DCA 모듈 추가 (trading/core_dca.py)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">종목당 비중 상한 실측 (20% vs 12%)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">상승장 검증 (2026-04-01~05-31, KOSPI +45%·S&P +15% 구간)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">백테스트 평가(NAV) 버그 수정 — MDD 정정</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">기록 체계 확립</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">손절 방식 확정 (사용자 결정)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle"><a href="https://claude.ai/code/artifact/b0160255-ab9d-448b-8c07-18f3419a479a">3개월 백테스트 (개선 로직) — KOSPI 폭락 구간</a></span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">로직 개선 (Fable 전면 리뷰)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">4주 백테스트 (구 로직, 손절 없음)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">자동매매 프레임워크 구축</span></div><p class="quiet" style="margin-top:14px">상세 내용은 저장소의 trading/ledger/history.jsonl 참조.</p></section></div>
+  <div id="pane-chronicle" class="pane"><section class="last"><div class="sec-label"><em>01</em>DEV NOTES — 결정과 변경의 기록 (한 줄 요약)</div><div class="note-row"><span class="nd num">26.09.06</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 리디자인 — '자산 현황'·'실행 계획' 탭 신설(5계좌·목표 대비·진행률), 봇은 '정지' 표기로 뒤로, 모바일 대응, 금액 가리기 버튼</span></div><div class="note-row"><span class="nd num">26.09.06</span><span class="ntag t-decision">결정</span><span class="ntitle">본인 5계좌 통합 룩스루 첫 실행 — 9,143만 · 개별주 49% · 채권·금·현금 0% → 재배치 계획: 손절 없이, 원금 회수 + 월 150만(현금70·채권40·금40)</span></div><div class="note-row"><span class="nd num">26.09.06</span><span class="ntag t-change">로직 변경</span><span class="ntitle">침묵 실패 헬스 데드맨 스위치 — 스케줄 작업 14개 rc·산출물 mtime·게이트웨이를 매시 점검, 이상 즉시·정상 07:00 한 줄</span></div><div class="note-row"><span class="nd num">26.09.06</span><span class="ntag t-decision">결정</span><span class="ntitle">봇 실거래 재개 보류·섀도 확정 — 3종 집중 설계는 코스피 안정 초과 불가(critic 12차 부분 반려). 저PBR 하위 30% 1회 검정(T2)만 남기고 횡단면 축 종결 예정</span></div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-change">로직 변경</span><span class="ntitle">유니버스 1차 갱신 — 2006년대 대형주 명단 → 시총 상위 18종 (유지 6 · 신규 12)</span></div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">전종목 시점별 유니버스 재검증 — ⑤위험조정모멘텀 방향은 16/16 셀 우위, 크기는 불안정 → 채택 불가</span></div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-change">로직 변경</span><span class="ntitle">실거래 안전 패치 — 정지 플래그·잔고조회 실패 가시화·상태파일 fail-closed·KIS 백오프</span></div><div class="note-row"><span class="nd num">26.09.03</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">신규 로직 6종 시점별 검증 — ⑤위험조정모멘텀·②잔차모멘텀이 현행 신호 상회, 채택 보류(critic 조건부)</span></div><div class="note-row"><span class="nd num">26.09.01</span><span class="ntag t-change">로직 변경</span><span class="ntitle">서킷브레이커 판정 규칙 변경 — 장중가 1회 → 완결 종가 2거래일 연속 (ALT-B)</span></div><div class="note-row"><span class="nd num">26.08.12</span><span class="ntag t-change">로직 변경</span><span class="ntitle">국내주식 시세 소스 Yahoo → KIS Open API 전환</span></div><div class="note-row"><span class="nd num">26.08.12</span><span class="ntag t-change">로직 변경</span><span class="ntitle">탭별 상세 재구성 — 개별주 풀 상세·적립식 틀·장중 3시간 곡선·VS 라인차트 부활</span></div><div class="note-row"><span class="nd num">26.08.12</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 전면 리디자인 (A institutional + C 시장비교 바) + 1장 운용 보고서 신설</span></div><div class="note-row"><span class="nd num">26.08.11</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 개편 — 참고 탭 제거 + 실전 성과 중심 재구성 + 자동 갱신</span></div><div class="note-row"><span class="nd num">26.08.10</span><span class="ntag t-decision">결정</span><span class="ntitle">오늘 한정 — 매도는 승인제 유지 (SENTINEL_LIVE 전환 보류)</span></div><div class="note-row"><span class="nd num">26.08.10</span><span class="ntag t-live">라이브</span><span class="ntitle">첫 실전 리밸런싱 체결 — 삼성전기·SK하이닉스·삼성전자 편입</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">센티넬 전환 완료 — 구 봇 러너 교체·대시보드 연동</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">실주문 최종 승인 — 자본 상한 실잔고 전액(2,259,226원)으로 상향</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">무인 운영 확정 — 디스코드 알림 강화</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">실주문 전환(사용자) + 실행 주기 30분으로 상향</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">실전 모드 지원 + 러너·스케줄러 — dry-run 가동 시작</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">봇 자본 상한(BOT_CAPITAL) 추가 — 실전 준비</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 가독성 3차 개선</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 가독성 2차 개선</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">적립식은 ISA 계좌 수동 매수로 전환 (세금 A안)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle"><a href="https://jsrude3298-sudo.github.io/trading-ledger/">영구 공개 대시보드 개설 (GitHub Pages)</a></span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 개선 — 명칭·다크모드 토글·가독성</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">적립식 포트폴리오 확대 + 증액 기준 심화 (사용자 지적 반영)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">대시보드 시트 구조 개편</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">올해 전체(1/2~8/8) 코어+새틀라이트 통합 모의</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">비중 상한 20% 확정 + 코어 DCA 월 50만원 활성화</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">코어 DCA 모듈 추가 (trading/core_dca.py)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">종목당 비중 상한 실측 (20% vs 12%)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">상승장 검증 (2026-04-01~05-31, KOSPI +45%·S&P +15% 구간)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">백테스트 평가(NAV) 버그 수정 — MDD 정정</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">기록 체계 확립</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-decision">결정</span><span class="ntitle">손절 방식 확정 (사용자 결정)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle"><a href="https://claude.ai/code/artifact/b0160255-ab9d-448b-8c07-18f3419a479a">3개월 백테스트 (개선 로직) — KOSPI 폭락 구간</a></span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">로직 개선 (Fable 전면 리뷰)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-backtest">백테스트</span><span class="ntitle">4주 백테스트 (구 로직, 손절 없음)</span></div><div class="note-row"><span class="nd num">26.08.09</span><span class="ntag t-change">로직 변경</span><span class="ntitle">자동매매 프레임워크 구축</span></div><p class="quiet" style="margin-top:14px">상세 내용은 저장소의 trading/ledger/history.jsonl 참조.</p></section></div>
 </div>
 <script>
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+// 금액 가리기 — 공개 페이지라 화면을 남에게 보여줄 때 쓴다. 브라우저에만 저장.
+function applyMask(on) {
+  document.body.classList.toggle('masked', on);
+  document.getElementById('maskBtn').textContent = on ? '금액 보이기' : '금액 가리기';
+}
+function toggleMask() {
+  const on = !document.body.classList.contains('masked');
+  try { localStorage.setItem('mask', on ? '1' : '0'); } catch (e) {}
+  applyMask(on);
+}
+try { if (localStorage.getItem('mask') === '1') applyMask(true); } catch (e) {}
 function toggleTheme() {
   const dark = matchMedia('(prefers-color-scheme: dark)').matches;
   const cur = document.documentElement.getAttribute('data-theme') || (dark ? 'dark' : 'light');
