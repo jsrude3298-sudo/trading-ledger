@@ -259,6 +259,18 @@ td.r { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
 .fold summary::-webkit-details-marker { display: none; }
 .fold summary > span:first-child::before { content: "▸  "; color: var(--muted); } .fold[open] summary > span:first-child::before { content: "▾  "; }
 .tscroll { overflow-x: auto; }
+.quests { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.qmon { border: 1px solid var(--hairline); border-radius: 10px; padding: 14px 16px 6px; background: var(--bg); }
+.qmon.next { opacity: .78; }
+.qh { display: flex; justify-content: space-between; align-items: baseline; font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+.qh small { font-size: 11.5px; font-weight: 600; color: var(--muted); margin-left: 6px; }
+.qh .num { font-size: 13px; color: var(--muted); font-weight: 600; }
+.q { display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--hairline); align-items: start; }
+.qbox { width: 22px; height: 22px; border: 2px solid var(--hairline-2); border-radius: 6px; display: grid; place-items: center;
+  font-size: 14px; font-weight: 800; color: #fff; margin-top: 1px; }
+.q.done .qbox { background: var(--gain); border-color: var(--gain); }
+.qt { font-size: 14px; font-weight: 700; } .qd { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; line-height: 1.5; }
+.q.done .qt { text-decoration: line-through; color: var(--muted); } .q.done .qd { color: var(--muted); }
 .rules { padding-left: 22px; font-size: 14px; color: var(--ink-2); display: grid; gap: 8px; }
 .rules b { color: var(--ink); } .rules.dont { list-style: "✕  "; }
 .prog { display: grid; gap: 12px; }
@@ -281,7 +293,7 @@ body.masked .money, body.masked .num.money { filter: blur(7px); user-select: non
   .masthead { flex-direction: column; align-items: flex-start; gap: 6px; }
   .stamp { text-align: left; }
   .tabs { gap: 14px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-  .hero-a, .perf, .duo, .acards { grid-template-columns: 1fr; gap: 18px; }
+  .hero-a, .perf, .duo, .acards, .quests { grid-template-columns: 1fr; gap: 18px; }
   .figures { grid-template-columns: 1fr 1fr; row-gap: 14px; }
   .hero-v { font-size: 40px; } .headline .value { font-size: 36px; }
   .mast-r { flex-wrap: wrap; gap: 8px 12px; } .stamp { flex: 1 1 100%; }
@@ -455,6 +467,11 @@ body.masked .money, body.masked .num.money { filter: blur(7px); user-select: non
   </section>
 </div>
   <div id="pane-plan" class="pane">
+  <section>
+    <div class="h2">이달의 퀘스트 <span class="quiet">두 달만 보인다 · 완료는 납입 기록에서 자동 판정</span></div>
+    <div class="quests"><div class="qmon now"><div class="qh"><span>9월 <small>이번 달</small></span><span class="num">0/4</span></div><div class="q "><span class="qbox"></span><div><div class="qt">매수할 계좌 하나로 정하기</div><div class="qd">현금(CMA 또는 KODEX CD금리액티브)·채권 ETF·금현물 ETF를 전부 국내위탁 한 계좌에서 산다. 흩어지면 룩스루가 못 센다.</div></div></div><div class="q "><span class="qbox"></span><div><div class="qt">원금 회수 주문</div><div class="qd">삼성SDI 15주 중 6주 · POSCO홀딩스 19주 중 15주 매도 (약 834만). 나머지 이익 8종 전량(363만)은 선택.</div></div></div><div class="q "><span class="qbox"></span><div><div class="qt">회수 대금을 방어자산으로</div><div class="qd">회수액을 7:4:4로 — 현금 · 채권 · 금. 전부 팔았으면 559만 · 319만 · 319만. 넣은 날 나한테 말하면 기록한다.</div></div></div><div class="q "><span class="qbox"></span><div><div class="qt">9월 납입 150만</div><div class="qd">현금 70만 · 채권 40만 · 금 40만</div></div></div></div><div class="qmon next"><div class="qh"><span>10월 <small>다음 달</small></span><span class="num">0/2</span></div><div class="q "><span class="qbox"></span><div><div class="qt">9월 지킴 점검</div><div class="qd">손실 종목 추가 매수 0건, 새 개별주 0건이면 완료. 하나라도 있으면 그대로 두고 나한테 말할 것 — 되돌리지 않는다.</div></div></div><div class="q "><span class="qbox"></span><div><div class="qt">10월 납입 150만</div><div class="qd">현금 70만 · 채권 40만 · 금 40만</div></div></div></div></div>
+  </section>
+
   <section>
     <div class="h2">원칙 세 줄 <span class="quiet">2026-09-06 확정</span></div>
     <ol class="rules">
